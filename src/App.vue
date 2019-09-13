@@ -1,28 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" @touchmove.prevent>
+    <MHeader></MHeader>
+    <Tab></Tab>
+    <!-- 将dom缓存，解决每次切换路由都重新渲染页面的问题 -->
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive> 
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MHeader from './components/header/Header'
+import Tab from './components/tab/Tab'
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  components:{
+    MHeader,
+    Tab
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scope lang="scss">
+
 </style>
