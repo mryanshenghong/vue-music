@@ -3,11 +3,10 @@ To learn how to implement a music player logic in  web app
 学习怎么在web app内实现一个音乐播放器的逻辑
 
 ## 碰到的问题
-    -better-scroll
-    在使用better scroll 移动端触摸滚动组件时,当数据是异步加载的时候(或者数据发生变化的时候))应该动态计算scroll组件的高度,并且重新渲染页面
-    Recommend.js
-    在这里加入倒计时事件是因为页面重新渲染时间是17ms，使用倒计时在加载完第一张图片以后立即执行scroll刷新计算dom高度，
-    目前解决了scroll下拉出现大片空白的问题
+-better-scroll
+在使用better scroll 移动端触摸滚动组件时,当数据是异步加载的时候(或者数据发生变化的时候))应该动态计算scroll组件的高度,并且重新渲染页面   
+Recommend.js   
+在这里加入倒计时事件是因为页面重新渲染时间是17ms，使用倒计时在加载完第一张图片以后立即执行scroll刷新计算dom高度，目前解决了scroll下拉出现大片空白的问题
 
     ```
     <Slider>
@@ -17,10 +16,9 @@ To learn how to implement a music player logic in  web app
             </a>
         </div>
     </Slider>
-
-    ...
     loadImage(){
         //在这里加入倒计时事件是因为页面重新渲染时间是17ms，使用倒计时在加载完第一张图片以后立即执行scroll刷新计算dom高度，
+        //可以用setTimeout(()=>{},20) 或者 调用vue的this.$nextTick()
         //目前解决了scroll下拉出现大片空白的问题
         setTimeout( () => {
         if(!this.checkLoaded){
@@ -30,17 +28,15 @@ To learn how to implement a music player logic in  web app
         },20)
     }    
     ```
-    ---
-    -css
-    header组件
-    /components/header/Header
+-css   
+header组件   
+/components/header/Header
+
     ```
     <template>
         <div class="my-header">
             <div class="icon"></div>
             <h1 class="text">Chicken Music</h1>
-
-            <!-- 个人中心 -->
             <router-link to="/user" class="mine" tag="div">
             <i class="icon-mine"></i>
             </router-link>
