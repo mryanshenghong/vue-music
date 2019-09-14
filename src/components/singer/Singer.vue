@@ -1,19 +1,23 @@
 <template>
     <div class="singer">
-
+        <ListView :data="singers" v-if="singers"></ListView>
     </div>
 </template>
 <script>
 import {getSingerList} from '@/api/singer'
 import { ERR_OK } from '@/api/config'
 import Singer from '@/common/js/singer'
+import ListView from '@/base/listView/ListView'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
-    datda(){
+    data(){
         return {
             singers:[]
         }
+    },
+    components:{
+        ListView
     },
     created(){
         this._getSingerList()
@@ -23,7 +27,6 @@ export default {
             getSingerList().then( res => {
                 if(res.code === ERR_OK){
                     this.singers = this._normalizeSinger(res.data.list)
-                    console.log(this.singers)
                 }
             }).catch( err => {
 

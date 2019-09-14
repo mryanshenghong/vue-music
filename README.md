@@ -52,9 +52,19 @@ header组件
         //这里设置top为0的原因，让header距离顶部没有距离
         //如果不设置当移动端触摸移动header的时候会发生组件移动，
         //非常影响用户体验
+        //better-scroll 版本 ^0.1.15
         top:0; 
         //...余下代码略
     </style> 
+    ```
+- Vue
+    父子组件使用props传值时   
+    当数据的类型为Object/Array时,default 的值需要使用function return的方式设置
+    ```
+    props{
+        type:Array, //或者Object
+        default: () => { return []}
+    }
     ```
 
 ## Project setup

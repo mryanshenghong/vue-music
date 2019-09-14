@@ -45,7 +45,14 @@ export default {
         },
         refresh(){
             this.scroll && this.scroll.refresh()
-        }
+        },
+        // apply(e,arguments) arguments 是一个数组 wired
+        scrollTo(){
+            this.scroll && this.scroll.scrollTo.apply(this.scroll,arguments)
+        },
+        scrollToElement(){
+            this.scroll && this.scroll.scrollToElement.apply(this.scroll,arguments)
+        }     
     },
     watch:{
         data(){
