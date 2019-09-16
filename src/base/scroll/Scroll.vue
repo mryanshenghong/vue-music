@@ -19,7 +19,10 @@ export default {
             type:Array,
             default:null
         },
-
+        listenScroll:{
+            type:Boolean,
+            default:false
+        }
     },
     mounted(){
         setTimeout( () => {
@@ -36,6 +39,14 @@ export default {
                 click:this.click,
                 useTransition: true
             })
+
+            if(this.listenScroll){
+                //Vue 实例
+                let me = this
+                this.scroll.on('scroll',(pos) =>{
+                    me.$emit('scroll',pos)
+                })
+            }
         },
         enable(){
             this.scroll && this.scroll.enable()
