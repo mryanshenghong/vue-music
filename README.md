@@ -65,7 +65,9 @@ header组件
         type:Array, //或者Object
         default: () => { return []}
     }
-    ```
+    ```   
+    当子路由刷新的时候，页面会有短暂的闪烁先显示父组件然后才显示子组件
+    未解决.....
 
 ## Project setup
 ```

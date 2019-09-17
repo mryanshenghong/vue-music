@@ -1,6 +1,10 @@
 <template>
     <div class="singer">
-        <ListView :data="singers" v-if="singers"></ListView>
+        <ListView @select="selectSinger" :data="singers"></ListView>
+        <keep-alive>
+            <router-view></router-view>
+        </keep-alive>
+        
     </div>
 </template>
 <script>
@@ -8,6 +12,7 @@ import {getSingerList} from '@/api/singer'
 import { ERR_OK } from '@/api/config'
 import Singer from '@/common/js/singer'
 import ListView from '@/base/listView/ListView'
+import { mapMutations } from 'vuex'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
@@ -23,10 +28,18 @@ export default {
         this._getSingerList()
     },
     methods:{
+        selectSinger(singer){
+            this.$router.push({
+                path: `/singer/${singer.id}`
+            })
+
+            this.setSinger(singer)
+        },
         _getSingerList(){
             getSingerList().then( res => {
                 if(res.code === ERR_OK){
                     this.singers = this._normalizeSinger(res.data.list)
+                    // console.log(this.singers)
                 }
             }).catch( err => {
 
@@ -75,8 +88,12 @@ export default {
                 return a.title.charCodeAt(0) - b.title.charCodeAt(0)
             })
             return hot.concat(rest)
-        }
-    }
+        },
+        ...mapMutations({
+            //映射mutation type里面的 SET_SINGER 这个放到到组件内名字为 setSinger
+            setSinger:'SET_SINGER'
+        })        
+    },
 }
 </script>
 <style scoped lang="scss">

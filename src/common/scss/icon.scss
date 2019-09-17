@@ -39,6 +39,10 @@
   .icon-play-mini:before {
     content: "\e903"
   }
+
+  .icon-pause-mini:before {
+    content: "\e90b"
+  }
   
   .icon-playlist:before {
     content: "\e904"
@@ -99,3 +103,6 @@
   .icon-mine:before {
     content: "\e912"
   }
+  .icon-next:before {
+    content: "\E913";
+}

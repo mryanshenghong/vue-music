@@ -27,7 +27,15 @@ export default new Router({
             name:'Singer',
             component:function(resolve){
                 require(['@/components/singer/Singer'],resolve)
-            }
+            },
+            children:[
+                {
+                    path:':id',
+                    component: (resolve) =>{
+                        require(['@/components/singer/components/SingerDetail'],resolve)
+                    }
+                }
+            ]
         },
         {
             path:'/search',

@@ -2,15 +2,15 @@
     <Scroll class="list" 
             :data="data" 
             ref="listView" 
-            :listenScroll = "listenScroll"
+            :listen-scroll = "listenScroll"
             @scroll = "scroll"
-            :probeType="probeType"
+            :probe-type="probeType"
     >
         <ul>
             <li v-for="(group,index) in data" :key='index' class="list-group" ref="listGroup">
                 <h2 class="list-group-title">{{group.title}}</h2>
                 <ul>
-                    <li v-for="(item,index) in group.items" :key="index" class="list-group-item">
+                    <li @click="selectItem(item)" v-for="(item,index) in group.items" :key="index" class="list-group-item">
                         <img @load="loadImg" class="avatar" v-lazy="item.avatar" />
                         <span class="name">{{item.name}}</span>
                     </li>
@@ -40,7 +40,7 @@ export default {
     props:{
         data:{
             type:Array,
-            default:() => {return []}
+            default:[]
         }
     },
     data(){
@@ -67,6 +67,9 @@ export default {
         }
     },
     methods:{
+        selectItem(item){
+          this.$emit('select',item)
+        },
         loadImg(){
             setTimeout( () => {
                 if(!this.checkLoaded){
@@ -223,7 +226,7 @@ export default {
   }
   .list-fixed {
     position: absolute;
-    top: -1px;
+    top: 0px;
     left: 0;
     width: 100%;
     .fixed-title {

@@ -1,5 +1,5 @@
-import {getLyric} from 'api/song'
-import {ERR_OK} from 'api/config'
+import {getLyric} from '@/api/song'
+import {ERR_OK} from '@/api/config'
 import {Base64} from 'js-base64'
 
 export default class Song {
@@ -41,10 +41,9 @@ export function createSong(musicData) {
     album: musicData.albumname,
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-    url: `http://ws.stream.qqmusic.qq.com/${musicData.songid}.m4a?fromtag=46`
+    url: `http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C400${musicData.strMediaMid}.m4a?guid=8196746325&vkey=B052918D5435194F5155F84116B007F29F903389F14DB6206C71D6BEA23687FA039564DCC7C452F2975BD948A401F6C55877B858D478280D&uin=0&fromtag=38`
   })
 }
-
 function filterSinger(singer) {
   let ret = []
   if (!singer) {
