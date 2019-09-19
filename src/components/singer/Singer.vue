@@ -1,10 +1,10 @@
 <template>
-    <div class="singer">
-        <ListView @select="selectSinger" :data="singers"></ListView>
-        <keep-alive>
+    <div class="singer" ref="singer">
+        <ListView @select="selectSinger" :data="singers" ref="list"></ListView>
+        <transition name="slide1">
             <router-view></router-view>
-        </keep-alive>
-        
+        </transition>   
+       
     </div>
 </template>
 <script>
@@ -13,9 +13,11 @@ import { ERR_OK } from '@/api/config'
 import Singer from '@/common/js/singer'
 import ListView from '@/base/listView/ListView'
 import { mapMutations } from 'vuex'
+import { playlistMixin } from '@/common/js/mixin'
 const HOT_NAME = '热门'
 const HOT_SINGER_LEN = 10
 export default {
+    mixins:[playlistMixin],
     data(){
         return {
             singers:[]
@@ -28,18 +30,21 @@ export default {
         this._getSingerList()
     },
     methods:{
+        handlePlaylist(playlist) {
+            const bottom = playlist.length > 0 ? '60px' : ''
+            this.$refs.singer.style.bottom = bottom
+            this.$refs.list.refresh()
+        },        
         selectSinger(singer){
             this.$router.push({
-                path: `/singer/${singer.id}`
+                path: `/singer/${singer.id}`            
             })
-
             this.setSinger(singer)
         },
         _getSingerList(){
             getSingerList().then( res => {
                 if(res.code === ERR_OK){
                     this.singers = this._normalizeSinger(res.data.list)
-                    // console.log(this.singers)
                 }
             }).catch( err => {
 
@@ -103,4 +108,11 @@ export default {
         bottom:0;
         width: 100%;
     }
+    .slide1-enter-active, .slide1-leave-active {
+        transition: all .3s ease;
+    }
+    .slide1-enter, .slide1-leave-to {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+    }      
 </style>

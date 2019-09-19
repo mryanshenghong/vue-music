@@ -96,6 +96,9 @@ export default {
         scroll(pos){
           this.scrollY = pos.y
         },
+        refresh(){
+          this.$refs.listView.refresh()
+        },
         _scrollTo(index){
           //scrollToElement第二个参数是滚动的延时时间,不延迟就是0
           if(index !== 0 && !index){ return }
@@ -122,7 +125,7 @@ export default {
     },
     watch:{
       data(){
-        setTimeout( () =>{
+        this.$nextTick( () =>{
           this._computeHeight()
         })
       },

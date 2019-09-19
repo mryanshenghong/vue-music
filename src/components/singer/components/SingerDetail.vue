@@ -1,7 +1,7 @@
 <template>
-    <transition name="slide1">
+    
         <MusicList :title="title" :songs="songs" :bgImage="bgImage"></MusicList>
-    </transition>
+    
 </template>
 
 <script>
@@ -59,28 +59,12 @@ export default {
             return res
         }
     },
-    // created(){
-    //     this._getDetail()
-    // },
-    
-    deactivated(){
-        this.songs = []
-    },
-    activated(){
+    created(){
         this._getDetail()
-    }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-    @import "@/common/scss/const.scss";
-
-    .slide1-enter-active, .slide1-leave-active {
-        transition: all .3s ease;
-    }
-    .slide1-enter, .slide1-leave-to {
-        opacity: 0;
-        transform: translate3d(100%, 0, 0);
-    }
 
 </style>

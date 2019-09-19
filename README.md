@@ -68,6 +68,22 @@ header组件
     ```   
     当子路由刷新的时候，页面会有短暂的闪烁先显示父组件然后才显示子组件
     未解决.....
+- Vue Cli3   
+    在新的vue 脚手架中如果想加入前端代理请求，使用nodejs后端请求第三方api
+    在vue.config.js devServer对象里面的 before方法内使用axios发出请求,
+    ```
+    axios.get(url, {
+        headers: {
+            referer: '********',//axios在nodejs内发送中加入referer和host让服务器误以为是自己发出的请求 referer 和 host 修改成想用的服务器的网址(骗过服务器)
+            host: '*****'//
+        },
+        }).then((response) => {
+            ...
+            res.json(...) //将结果发送到前端
+        }).catch((e) => {
+            ...
+        })        
+    ```
 
 ## Project setup
 ```

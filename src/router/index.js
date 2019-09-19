@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 Vue.use(Router)
+const SingerDetail = (resolve) => {
+    import('@/components/singer/components/SingerDetail').then((module) => {
+      resolve(module)
+    })
+  }
 export default new Router({
     routes:[
         {
@@ -31,9 +35,7 @@ export default new Router({
             children:[
                 {
                     path:':id',
-                    component: (resolve) =>{
-                        require(['@/components/singer/components/SingerDetail'],resolve)
-                    }
+                    component: SingerDetail
                 }
             ]
         },

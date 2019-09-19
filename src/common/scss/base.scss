@@ -1,4 +1,7 @@
 @import "./const.scss";
+html{
+  touch-action: manipulation;
+}
 
 body, html {
   line-height: 1;

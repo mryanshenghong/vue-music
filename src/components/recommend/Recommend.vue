@@ -39,7 +39,9 @@ import { ERR_OK } from '../../api/config'
 import Slider from '@/base/slider/Slider'
 import Scroll from '@/base/scroll/Scroll'
 import Loading from '@/base/loading/Loading'
+import { playlistMixin } from '@/common/js/mixin'
 export default {
+    mixins:[playlistMixin],
     data(){
         return{
             total: [],
@@ -57,6 +59,11 @@ export default {
         this._getRecommend()
     },
     methods: {
+        handlePlaylist(playlist) {
+            const bottom = playlist.length > 0 ? '60px' : ''
+            this.$refs.recommend.style.bottom = bottom
+            this.$refs.scroll.refresh()
+        },      
         _getRecommend (){
             getRecommend().then( res => {
                 if(res.code === ERR_OK){
