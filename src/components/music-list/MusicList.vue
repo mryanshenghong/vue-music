@@ -54,7 +54,7 @@ export default {
         },
         songs:{
             type:Array,
-            default:[]
+            default: () => { return []}
         },
         title:{
             type:String,

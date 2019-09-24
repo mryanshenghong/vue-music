@@ -12,6 +12,8 @@ export const mode_getter = state => state.mode
 
 export const currentIndex_getter = state => state.currentIndex
 
+export const disc_getter = state => state.disc
+
 export const currentSong = (state) => {
     return state.playlist[state.currentIndex] || {}
 }

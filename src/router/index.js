@@ -17,7 +17,16 @@ export default new Router({
           name:'Recommend',
           component:function(resolve){
               require(['@/components/recommend/Recommend'],resolve)
-          }
+          },
+          children:[
+              {
+                path:':id',
+                name:'Disc',
+                component:function(resolve){
+                    require(['@/components/disc/Disc'],resolve)
+                },                  
+              }
+          ]
         },
         {
             path:'/rank',
