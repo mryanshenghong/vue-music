@@ -5,13 +5,16 @@ export function getLyric(mid) {
   const url = '/api/lyric'
 
   const data = Object.assign({}, commonParams, {
-    songmid: mid,
+    musicid: mid,
     platform: 'yqq',
     hostUin: 0,
+    uin:0,
     needNewCode: 0,
     categoryId: 10000000,
     pcachetime: +new Date(),
-    format: 'json'
+    format: 'json',
+    g_tk:5381,
+    jsonpCallback: 'jsonp1',
   })
 
   return axios.get(url, {

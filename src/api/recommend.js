@@ -17,7 +17,6 @@ export function getRecommend() {
 
 export function getSongList(disstid) {
     const url = '/api/songList'
-    console.log(disstid)
     const data = Object.assign({}, commonParams, {
       disstid,
       type: 1,

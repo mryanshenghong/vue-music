@@ -18,9 +18,8 @@ export default class Song {
     if (this.lyric) {
       return Promise.resolve(this.lyric)
     }
-
     return new Promise((resolve, reject) => {
-      getLyric(this.mid).then((res) => {
+      getLyric(this.id).then((res) => {
         if (res.retcode === ERR_OK) {
           this.lyric = Base64.decode(res.lyric)
           resolve(this.lyric)
@@ -41,10 +40,9 @@ export function createSong(musicData) {
     album: musicData.albumname,
     duration: musicData.interval,
     image: `https://y.gtimg.cn/music/photo_new/T002R300x300M000${musicData.albummid}.jpg?max_age=2592000`,
-    url: `http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C400${musicData.strMediaMid}.m4a?guid=674829736&vkey=FD87E0BE7525916DACA369621569444A55447F54D9C9007F577995F95ED8B2DAC2DDEA55472E82A722334B4F611A3C2340B9CA39B1A61DD9&uin=0&fromtag=38&ocid=1303647660`
+    url: `http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C400${musicData.strMediaMid}.m4a?guid=1978285872&vkey=D8DA090F01BAD2CC9CA9C176A99534A18851419B9BEEB5C9545F3615B327442E1D10AEC17F02BEBD5280222DE02859F5044F4A5E076217BA&uin=0&fromtag=38`
   })
 }
-
 function filterSinger(singer) {
   let ret = []
   if (!singer) {

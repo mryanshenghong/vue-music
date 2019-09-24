@@ -89,7 +89,6 @@ export default {
           },20)
         },
         selectDisc(item){
-          console.log(item)
           this.$router.push({
             path:`/recommend/${item.id}`
           })
