@@ -13,7 +13,6 @@ export function getLyric(mid) {
     categoryId: 10000000,
     pcachetime: +new Date(),
     format: 'json',
-    g_tk:5381,
     jsonpCallback: 'jsonp1',
   })
 

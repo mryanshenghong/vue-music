@@ -27,7 +27,6 @@ export function getSongList(disstid) {
       platform: 'yqq',
       hostUin: 0,
       needNewCode: 0,
-      g_tk:5381,
       loginUin:0
     })
   
