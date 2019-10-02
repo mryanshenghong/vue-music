@@ -17,3 +17,5 @@ export const disc_getter = state => state.disc
 export const currentSong = (state) => {
     return state.playlist[state.currentIndex] || {}
 }
+
+export const topList_getter = state => state.topList

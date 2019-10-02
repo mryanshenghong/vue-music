@@ -2,7 +2,7 @@
     <div class="rank" ref="rank">
         <Scroll class="toplist" ref="toplist">
             <ul>
-                <li class="item" v-for="(item,index) in topList" :key="index">
+                <li class="item" v-for="(item,index) in topList" :key="index" @click="selectItem(item)">
                     <div class="icon">
                         <img width="100" height="100" v-lazy="item.picUrl">
                     </div>
@@ -18,7 +18,9 @@
                 <Loading />>
             </div>
         </Scroll>
-        <router-view></router-view>
+        <transition name="slide">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 <script>
@@ -27,6 +29,7 @@ import { ERR_OK} from '@/api/config'
 import Scroll from '@/base/scroll/Scroll'
 import Loading from '@/base/loading/Loading'
 import { playlistMixin } from '@/common/js/mixin'
+import  { mapMutations } from 'vuex'
 export default {
     mixins:[playlistMixin],
     data(){
@@ -39,6 +42,10 @@ export default {
         Loading
     },
     methods:{
+        selectItem(item){
+            this.$router.push({path: `/rank/${item.id}`})
+            this.setTopList(item)
+        },
         _getTopList(){
             getTopList().then( res => {
                 if(res.code === ERR_OK){
@@ -50,7 +57,10 @@ export default {
             const bottom =  playlist.length ? '60px' : '0'
             this.$refs.rank.style.bottom = bottom
             this.$refs.toplist.refresh()
-        }
+        },
+        ...mapMutations({
+            setTopList: 'SET_TOPLIST'
+        })
     },
     created(){
         this._getTopList()
@@ -109,5 +119,12 @@ export default {
       transform: translateY(-50%);
     }
   }
+    .slide-enter-active, .slide-leave-active{
+        transition: all 0.3s ease;
+    }
+
+    .slide-enter, .slide-leave-to{
+        transform: translate3d(100%,0,0)
+    }  
 }
 </style>

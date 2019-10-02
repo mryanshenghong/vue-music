@@ -33,7 +33,15 @@ export default new Router({
             name:'Rank',
             component:function(resolve){
                 require(['@/components/rank/Rank'],resolve)
-            }
+            },
+            children:[
+                {
+                    path: ':id',
+                    component:function(resolve){
+                        require(['@/components/top-list/TopList'],resolve)
+                    },                    
+                }
+            ]
         },
         {
             path:'/singer',
