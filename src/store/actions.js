@@ -1,6 +1,7 @@
 import * as types from './mutationTypes'
 import { playMode } from '@/common/js/config'
 import { shuffle } from '@/common/js/util'
+import { saveSearch, deleteSearch, clearSearch } from '@/common/js/cache'
 /**
  * 
  * @param {Object,Object} param0 action 默认对象 mutation commit, original state
@@ -84,4 +85,16 @@ export const insertSong = function ({commit,state},song) {
     commit(types.SET_CURRENTINDEX,currentIndex)
     commit(types.SET_FULLSCREEN,true)
     commit(types.SET_PLAYING,true)   
+}
+
+export const saveSearchHistory = function({commit},query){
+    commit(types.SET_SEARCHHISTORY, saveSearch(query))
+}
+
+export const deleteSearchHistory = function( {commit},query){
+    commit(types.SET_SEARCHHISTORY,deleteSearch(query))
+}
+
+export const clearSearchHistory = function({commit}){
+    commit(types.SET_SEARCHHISTORY, clearSearch())
 }

@@ -99,6 +99,8 @@ export default {
             }else{
                 this.insertSong(item)
             }
+            //派发添加搜索历史的事件
+            this.$emit('select')
         },
         listScroll(){
             this.$emit('listScroll')
@@ -140,6 +142,9 @@ export default {
                 ret = ret.concat(this._normalizeSongs(data.song.list))
             }
             return ret
+        },
+        _refresh(){
+            this.$refs.suggest.refresh()
         },
         ...mapMutations({
             setSinger:'SET_SINGER'
