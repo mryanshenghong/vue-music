@@ -61,7 +61,13 @@ export default new Router({
             name:'Search',
             component:function(resolve){
                 require(['@/components/search/Search'],resolve)
-            }
+            },
+            children:[
+                {
+                    path:':id',
+                    component: SingerDetail
+                }
+            ]
         }
     ]
 })
