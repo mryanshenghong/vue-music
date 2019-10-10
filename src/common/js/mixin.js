@@ -29,7 +29,7 @@ export const playlistMixin = {
 export const playerMixin = {
   computed: {
     iconMode() {
-      return this.mode === playMode.sequence ? 'icon-sequence' : this.mode === playMode.loop ? 'icon-loop' : 'icon-random'
+      return this.mode_getter === playMode.sequence ? 'icon-sequence' : this.mode_getter === playMode.loop ? 'icon-loop' : 'icon-random'
     },
     ...mapGetters([
       'sequenceList_getter',
@@ -45,9 +45,9 @@ export const playerMixin = {
       this.setPlayMode(mode)
       let list = null
       if (mode === playMode.random) {
-        list = shuffle(this.sequenceList)
+        list = shuffle(this.sequenceList_getter)
       } else {
-        list = this.sequenceList
+        list = this.sequenceList_getter
       }
       this.resetCurrentIndex(list)
       this.setPlaylist(list)
