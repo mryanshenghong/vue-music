@@ -9,7 +9,7 @@
                         <span class="clear" @click="showConfirm"><i class="icon-clear"></i></span>
                     </h1>
                 </div>
-                <Scroll class="list-content" :data="sequenceList_getter" ref="listContent">
+                <Scroll :refreshDelay="refreshDelay" class="list-content" :data="sequenceList_getter" ref="listContent">
                     <transition-group name="list" tag="ul">
                         <li ref="listItem" class="item" v-for="(item,index) in sequenceList_getter" :key="item.id" @click="selectItem(item,index)">
                             <i class="current" :class="getCurrentIcon(item)"></i>
@@ -24,7 +24,7 @@
                     </transition-group>
                 </Scroll>
                 <div class="list-operate">
-                    <div class="add">
+                    <div class="add" @click="addSong">
                         <i class="icon-add"></i>
                         <span class="text">添加歌曲到列表</span>
                     </div>
@@ -34,6 +34,7 @@
                 </div>
             </div>
             <Comfirm ref="confirm" @confirm="confirmClear" title="是否清空播放列表" confirmBtnText="清空"></Comfirm>
+            <AddSong ref="addSong"></AddSong>
         </div>
     </transition>
 </template>
@@ -43,16 +44,19 @@ import Scroll from '@/base/scroll/Scroll';
 import Comfirm from '@/base/comfirm/Comfirm';
 import { playMode } from '@/common/js/config';
 import { playerMixin } from '@/common/js/mixin';
+import AddSong from './components/AddSong'
 export default {
     mixins:[playerMixin],
     data(){
         return {
-            showFlag: false
+            showFlag: false,
+            refreshDelay: 100
         }
     },
     components:{
         Scroll,
-        Comfirm
+        Comfirm,
+        AddSong
     },
     computed:{
         modeText(){
@@ -72,6 +76,9 @@ export default {
         },
         hide() {
             this.showFlag = false
+        },
+        addSong(){
+          this.$refs.addSong.show()
         },
         getCurrentIcon(item){
             if(this.currentSong.id === item.id){

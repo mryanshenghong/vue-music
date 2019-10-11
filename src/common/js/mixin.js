@@ -99,7 +99,7 @@ export const searchMixin = {
   },
   computed: {
     ...mapGetters([
-      'searchHistory'
+      'history_getter'
     ])
   },
   methods: {

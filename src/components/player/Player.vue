@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { mapMutations } from "vuex";
 import animations from "create-keyframe-animation";
 import { prefixStyle } from "@/common/js/dom";
@@ -373,6 +373,7 @@ export default {
     },
     ready() {
       this.songReady = true;
+      this.savePlayHistory(this.currentSong)
     },
     error() {
       this.songReady = true;
@@ -451,7 +452,10 @@ export default {
       setCurrentIndex: "SET_CURRENTINDEX",
       setPlayMode: "SET_MODE",
       setPlaylist: "SET_PLAYLIST"
-    })
+    }),
+    ...mapActions([
+      'savePlayHistory'
+    ])
   },
   watch: {
     currentSong(newSong, oldSong) {
