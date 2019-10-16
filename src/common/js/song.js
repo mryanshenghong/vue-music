@@ -45,6 +45,7 @@ export function createSong(musicData) {
     url: `http://aqqmusic.tc.qq.com/amobile.music.tc.qq.com/C400${musicData.strMediaMid || musicData.songmid}.m4a?guid=836516700&vkey=4F8BF57846BDFE9B12FE39F5AB0E9ACF646FA1330485E6AB4316DF862DDAB4F3DDAD2A58E737838B66C6319EEA0B49358370AF8DBF160F6B&uin=0&fromtag=38`
   })
 }
+
 export function filterSinger(singer) {
   let ret = []
   if (!singer) {

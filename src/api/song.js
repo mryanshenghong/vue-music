@@ -2,7 +2,7 @@ import {commonParams} from './config'
 import axios from 'axios'
 
 export function getLyric(mid) {
-  const url = '/api/lyric'
+  const url = 'http://localhost:3002/api/vue-music/getLyric'
 
   const data = Object.assign({}, commonParams, {
     musicid: mid,

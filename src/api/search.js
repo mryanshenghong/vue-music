@@ -14,7 +14,7 @@ export function getHotKey() {
 }
 
 export function search(query, page, zhida, perpage) {
-  const url = '/api/search'
+  const url = 'http://localhost:3002/api/vue-music/search'
 
   const data = Object.assign({}, commonParams, {
     w: query,
