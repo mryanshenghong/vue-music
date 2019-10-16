@@ -16,7 +16,7 @@ export function getRecommend() {
 
 
 export function getSongList(disstid) {
-    const url = 'http://127.0.0.1:3002/api/vue-music/getSongList'
+    const url = 'http://yanshenghong.com:3002/api/vue-music/getSongList'
     const data = Object.assign({}, commonParams, {
       disstid,
       type: 1,
