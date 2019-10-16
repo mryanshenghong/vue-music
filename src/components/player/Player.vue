@@ -78,7 +78,7 @@
               <i @click="next" class="icon-next"></i>
             </div>
             <div class="icon i-right">
-              <i class="icon icon-not-favorite"></i>
+              <i @click="toggleFavorite(currentSong)" class="icon" :class="getFavoriteIcon(currentSong)"></i>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@
       @timeupdate="updateTime"
       ref="audio"
       :src="currentSong.url"
-      @canplay="ready"
+      @play="ready"
       @error="error"
       @ended="end"
     ></audio>
@@ -128,9 +128,11 @@ import { shuffle } from "@/common/js/util";
 import Lyric from "lyric-parser";
 import Scroll from "@/base/scroll/Scroll";
 import PlayList from '@/components/play-list/PlayList'
+import { playerMixin } from '@/common/js/mixin'
 const transform = prefixStyle("transform");
 const transitionDuration = prefixStyle("transitionDuration");
 export default {
+  mixins:[playerMixin],
   data() {
     return {
       songReady: false,
@@ -291,6 +293,7 @@ export default {
       }
       if (this.playlist_getter.length === 1) {
         this.loop();
+        return;
       } else {
         let index = this.currentIndex_getter + 1;
         if (index === this.playing_getter.length) {
@@ -309,6 +312,7 @@ export default {
       }
       if (this.playlist_getter.length === 1) {
         this.loop();
+        return;
       } else {
         let index = this.currentIndex_getter - 1;
         if (index === -1) {
@@ -471,8 +475,8 @@ export default {
         this.playingLyric = ''
         this.currentLyricLineNum = 0
       }
-
-      setTimeout(() => {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
         this.$refs.audio.play();
         this.getLyric();
       },1000);

@@ -68,6 +68,13 @@ export default new Router({
                     component: SingerDetail
                 }
             ]
+        },
+        {
+            path: '/user',
+            name: 'User',
+            component: function(resolve){
+                require(['@/components/user-center/UserCenter'],resolve)
+            }
         }
     ]
 })

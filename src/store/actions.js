@@ -1,7 +1,7 @@
 import * as types from './mutationTypes'
 import { playMode } from '@/common/js/config'
 import { shuffle } from '@/common/js/util'
-import { saveSearch, deleteSearch, clearSearch, savePlay } from '@/common/js/cache'
+import { saveSearch, deleteSearch, clearSearch, savePlay, saveFavorite, deleteFavorite } from '@/common/js/cache'
 /**
  * 
  * @param {Object,Object} param0 action 默认对象 mutation commit, original state
@@ -133,4 +133,12 @@ export const deleteSongList = function( {commit} ){
     commit(types.SET_SEQUENCELIST,[])
     commit(types.SET_CURRENTINDEX, -1)
     commit(types.SET_PLAYING, false)
+}
+
+export const saveFavoriteList = function ( {commit}, song){
+    commit(types.SET_FAVORITELIST,saveFavorite(song))
+}
+
+export const deleteFavoriteList = function ( {commit}, song){
+    commit(types.SET_FAVORITELIST,deleteFavorite(song))
 }

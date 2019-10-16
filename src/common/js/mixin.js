@@ -36,7 +36,7 @@ export const playerMixin = {
       'playlist_getter',
       'currentSong',
       'mode_getter',
-      // 'favoriteList'
+      'favoriteList'
     ])
   },
   methods: {
@@ -84,8 +84,8 @@ export const playerMixin = {
       setPlayingState: 'SET_PLAYING'
     }),
     ...mapActions([
-      // 'saveFavoriteList',
-      // 'deleteFavoriteList'
+      'saveFavoriteList',
+      'deleteFavoriteList'
     ])
   }
 }
